@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td,th{
+            position: relative;
+            padding-top:1%;
+            padding-bottom:1%;
+            padding-left:2%;
+            padding-right:2%;
+            border:1px solid;
+            word-wrap:break-word;
+            text-align:center;
+        }
+        th{
+            width: 10rem;
+            padding: 1%;
+        }
+        button{
+            position: absolute;
+            right: 0px; 
+            top: 0px;
+        }
+        table{
+            width:90%;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <table>
+            <tr>
+                <th >9-10</th>
+                <th >10-11</th>
+                <th>11-12</th>
+                <th>12-1</th>
+                <th>2-3</th>
+                <th>2-4</th>
+            </tr>
+            <p id="d1">{{a}}</p>
+            
+
+            <form action="" method="post">
+                
+                <p id="token">{% csrf_token %}</p>
+                <tr>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="1">
+                            <input type="text" placeholder="Class" name="class" value="1">
+                            <input type="text" placeholder="Room No." name="room" value="1">
+                            <input type="text" placeholder="Batch" name="batch" value="1">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="2">
+                            <input type="text" placeholder="Class" name="class" value="2">
+                            <input type="text" placeholder="Room No." name="room" value="2">
+                            <input type="text" placeholder="Batch" name="batch" value="2">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="3">
+                            <input type="text" placeholder="Class" name="class" value="3">
+                            <input type="text" placeholder="Room No." name="room" value="3">
+                            <input type="text" placeholder="Batch" name="batch" value="3">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="4">
+                            <input type="text" placeholder="Class" name="class" value="4">
+                            <input type="text" placeholder="Room No." name="room" value="4">
+                            <input type="text" placeholder="Batch" name="batch" value="4">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="5">
+                            <input type="text" placeholder="Class" name="class" value="5">
+                            <input type="text" placeholder="Room No." name="room" value="5">
+                            <input type="text" placeholder="Batch" name="batch" value="5">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="6">
+                            <input type="text" placeholder="Class" name="class" value="6">
+                            <input type="text" placeholder="Room No." name="room" value="6">
+                            <input type="text" placeholder="Batch" name="batch" value="6">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                </tr>
+                <tr >
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="7">
+                            <input type="text" placeholder="Class" name="class" value="7">
+                            <input type="text" placeholder="Room No." name="room" value="7">
+                            <input type="text" placeholder="Batch" name="batch" value="7">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="8">
+                            <input type="text" placeholder="Class" name="class" value="8">
+                            <input type="text" placeholder="Room No." name="room" value="8">
+                            <input type="text" placeholder="Batch" name="batch" value="8">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course" value="9">
+                            <input type="text" placeholder="Class" name="class" value="9">
+                            <input type="text" placeholder="Room No." name="room" value="9">
+                            <input type="text" placeholder="Batch" name="batch" value="9">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                </tr>
+                <tr >
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course">
+                            <input type="text" placeholder="Class" name="class">
+                            <input type="text" placeholder="Room No." name="room">
+                            <input type="text" placeholder="Batch" name="batch">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course">
+                            <input type="text" placeholder="Class" name="class">
+                            <input type="text" placeholder="Room No." name="room">
+                            <input type="text" placeholder="Batch" name="batch">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course">
+                            <input type="text" placeholder="Class" name="class">
+                            <input type="text" placeholder="Room No." name="room">
+                            <input type="text" placeholder="Batch" name="batch">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                </tr>
+                <tr >
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course">
+                            <input type="text" placeholder="Class" name="class">
+                            <input type="text" placeholder="Room No." name="room">
+                            <input type="text" placeholder="Batch" name="batch">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course">
+                            <input type="text" placeholder="Class" name="class">
+                            <input type="text" placeholder="Room No." name="room">
+                            <input type="text" placeholder="Batch" name="batch">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                    <td colspan="2" >Lab 
+                        <br>
+                            <input type="text" placeholder="Course" name="course">
+                            <input type="text" placeholder="Class" name="class">
+                            <input type="text" placeholder="Room No." name="room">
+                            <input type="text" placeholder="Batch" name="batch">
+                        <br>
+                        <button onclick="splitcell(this)" >split</button>
+                    </td>
+                </tr>
+                
+            <input type="submit" value="Submit">
+        </form>
+        <button onclick="addToken()">Build</button>
+        </table>
+    </center>
+    <script>
+        console.log(document.getElementById("d1").innerHTML);
+        function addToken(){
+            var token= document.getElementById("token");
+            token.innerHTML='{% csrf_token %}';
+        }
+        // function splitcell(e){
+        //     var cell=e.parentElement;
+        //     var row=cell.parentElement;
+        //     var table=row.parentElement;
+        //     var index=Array.prototype.indexOf.call(row.children,cell);
+        //     var colspan=cell.getAttribute("colspan");
+        //     if(colspan==2){
+        //         cell.setAttribute("colspan","1");
+        //         var newcell=cell.cloneNode(true);
+        //         row.insertBefore(newcell,cell.nextSibling);
+        //     }
+        //     else{
+        //         var nextcell=cell.nextSibling;
+        //         var nextcolspan=nextcell.getAttribute("colspan");
+        //         if(nextcolspan==2){
+        //             cell.setAttribute("colspan","2");
+        //             row.removeChild(nextcell);
+        //         }
+        //         else{
+        //             cell.setAttribute("colspan","2");
+        //             nextcell.setAttribute("colspan","1");
+        //         }
+        //     }
+        // }
+        setColor();
+        function setColor() {
+            var td=document.getElementsByTagName("td");
+            for(var i=0;i<td.length;i++){
+                colspan=td[i].getAttribute("colspan")
+                if(colspan==2){
+                    td[i].style.backgroundColor="cyan";
+                }
+                else{
+                    td[i].style.backgroundColor="orange";
+                }
+            }
+        }
+        
+        // check the colspan of the cell
+        // function checkcolspan(cell){
+        //     var colspan=cell.getAttribute("colspan");
+        //     console.log(colspan);
+        //     if(colspan==2){
+                
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
+        function splitcell(x){
+            var y=x.parentNode;
+            var td = document.getElementsByTagName("td");
+            y.setAttribute("colspan","1");
+            // change innerHTML of the y
+            y.innerHTML="Lecture <br> <input type='text' placeholder='Course' name='course'> <input type='text' placeholder='Class' name='class'> <input type='text' placeholder='RoomNo.' name='room'> <div style=''><input type='text' placeholder='Batch' name='batch' value='None'></div><br> ";
+            var newtd = document.createElement("td");
+            newtd.setAttribute("colspan","1");
+            newtd.innerHTML = "Lecture <br> <input type='text' placeholder='Course' name='course'> <input type='text' placeholder='Class' name='class'> <input type='text' placeholder='RoomNo.' name='room'> <div style=''><input type='text' placeholder='Batch' name='batch' value='None'></div> <br> <button onclick='mergecell(this)'>merge</button>";
+            var index = Array.prototype.indexOf.call(td, y);
+            // insert newtd after y
+            y.parentNode.insertBefore(newtd, y.nextSibling);
+            setColor();
+        }
+        function mergecell(x) {
+            var y = x.parentNode;
+            var td = document.getElementsByTagName("td");
+            var index = Array.prototype.indexOf.call(td, y);
+            console.log(index);
+            y.setAttribute("colspan", "2");
+            // remove the td[index-1]
+            y.parentNode.removeChild(y.previousSibling);
+            y.innerHTML = "Lab <br> <input type='text' placeholder='Course' name='course'> <input type='text' placeholder='Class' name='class'> <input type='text' placeholder='RoomNo.' name='room'> <input type='text' placeholder='Batch' name='batch'> <br> <button onclick='splitcell(this)' >split</button>";
+            setColor();
+        }
+
+    </script>
+</body>
+</html>

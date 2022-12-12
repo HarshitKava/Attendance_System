@@ -1,0 +1,445 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <style>
+        input[type="text"]{
+            width: 40%;
+            border: 0px;
+            text-align: center;
+            background-color: #04347a;
+            color: white;
+            border-radius: 10px;
+            border: 0px solid white;
+        }
+        /* change color of emplty input */
+        input::placeholder{
+            /* background-color: red; */
+            color: white;
+        }
+        td,th{
+            position: relative;
+            padding-top:1%;
+            padding-bottom:1%;
+            padding-left:2%;
+            padding-right:2%;
+            border:1px solid;
+            word-wrap:break-word;
+            text-align:center;
+            height: 4rem;
+            border: 7px solid #fff;
+            border-radius: 20px;
+            animation: fader 1s forwards;
+            opacity: 1;
+            align-items: center;
+            color: #fff;
+
+        }
+        th{
+            background-color: #434343;
+        }
+        td:hover{
+            animation: fade 1s forwards;
+        }
+        @keyframes fade{
+            0%{
+                scale: 1;
+            }
+            100%{
+                scale: 1.02;
+                border: 0px solid #04347a;
+                z-index: 1;
+            }
+        }
+        @keyframes fader{
+            0%{
+                scale: 1.02;
+                border: 0px solid #04347a;
+                z-index: 1;
+            }
+            100%{
+                scale: 1;
+            }
+        }
+        th{
+            width: 10rem;
+            height: 3rem;
+            padding: 1%;
+            background-color: #434343;
+        }
+        #thdays{
+            width: 3rem;
+            height: 1rem;
+            padding: 0.5%;
+
+        }
+        button{
+            position: absolute;
+            right: 0px; 
+            top: 0px;
+            /* border: 0px; */
+        }
+        #editbtn,#buildbtn,#savebtn{
+            background-color: #fff;
+            color: black;
+            font-size: 1.5rem;
+            padding: 0.5%;
+            border-radius: 10px;
+            border: 2px solid black;
+            cursor: pointer;
+            position: static;
+            
+        }
+        form table tr td, form table tr th{
+            animation:nothing infinite;
+        }
+        form table tr td:hover, form table tr th:hover{
+            animation:nothing infinite;
+        }
+        @keyframes nothing{
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        table{
+            width:95%;
+        }
+        body{    
+            background-color: #fff;
+            /* color: #78c2df; */
+            
+        }
+        a{
+            color: #fff;
+            text-decoration: none;
+        }
+        a:hover{
+            color: #000;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <button id="editbtn" onclick="EditTT()">Edit</button>
+        <table id="activeTT">
+            <tr>
+                <th id="thdays">
+                    Day/Time
+                </th>
+                <th>
+                    9-10
+                </th>
+                <th>
+                    10-11
+                </th>
+                <th>
+                    11-12
+                </th>
+                <th>
+                    12-1
+                </th>
+                <th>
+                    2-3
+                </th>
+                <th>
+                    3-4
+                </th>
+            </tr>
+            <tr>
+                <th id="thdays">Monday</th>
+            {% for i in mon %}
+                    {% if i.Batch == 'none' %}
+                        <td colspan="1">
+                    {% else %}
+                        <td colspan="2">
+                    {% endif %}
+                    {% if i.Subject == i.RoomNo and i.RoomNo == i.Code and i.Code == 'Free' %}
+                            Free
+                    {% else %}
+                        {{i.Subject}}
+                        {{i.RoomNo}}
+                        {{i.Code}}
+                        {% if i.Batch != 'none' %}
+                        {{i.Batch}}
+                        {% endif %}
+                        <br>
+                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                    {% endif %}
+                </td>
+            {% endfor %}
+            </tr>
+            <tr>
+                <th id="thdays">Tuesday</th>
+            {% for i in tue %}
+                    {% if i.Batch == 'none' %}
+                        <td colspan="1">
+                    {% else %}
+                        <td colspan="2">
+                    {% endif %}
+                    {% if i.Subject == i.RoomNo and i.RoomNo == i.Code and i.Code == 'Free' %}
+                            Free
+                    {% else %}
+                        {{i.Subject}}
+                        {{i.RoomNo}}
+                        {{i.Code}}
+                        {% if i.Batch != 'none' %}
+                        {{i.Batch}}
+                        {% endif %}
+                        <br>
+                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                    {% endif %}
+                    
+                </td>
+            {% endfor %}
+            </tr>
+            <tr>
+                <th id="thdays">Wednesday</th>
+            {% for i in wed %}
+                    {% if i.Batch == 'none' %}
+                        <td colspan="1">
+                    {% else %}
+                        <td colspan="2">
+                    {% endif %}
+                    {% if i.Subject == i.RoomNo and i.RoomNo == i.Code and i.Code == 'Free' %}
+                            Free
+                    {% else %}
+                        {{i.Subject}}
+                        {{i.RoomNo}}
+                        {{i.Code}}
+                        {% if i.Batch != 'none' %}
+                        {{i.Batch}}
+                        {% endif %}
+                        <br>
+                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                    {% endif %}
+                    
+                </td>
+            {% endfor %}
+            </tr>
+            <tr>
+                <th id="thdays">Thursday</th>
+            {% for i in thu %}
+                    {% if i.Batch == 'none' %}
+                        <td colspan="1">
+                    {% else %}
+                        <td colspan="2">
+                    {% endif %}
+                    {% if i.Subject == i.RoomNo and i.RoomNo == i.Code and i.Code == 'Free' %}
+                            Free
+                    {% else %}
+                        {{i.Subject}}
+                        {{i.RoomNo}}
+                        {{i.Code}}
+                        {% if i.Batch != 'none' %}
+                        {{i.Batch}}
+                        {% endif %}
+                        <br>
+                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                    {% endif %}
+                    
+                </td>
+            {% endfor %}
+            </tr>
+            <tr>
+                <th id="thdays">Friday</th>
+            {% for i in fri %}
+                    {% if i.Batch == 'none' %}
+                        <td colspan="1">
+                    {% else %}
+                        <td colspan="2">
+                    {% endif %}
+                    {% if i.Subject == i.RoomNo and i.RoomNo == i.Code and i.Code == 'Free' %}
+                            Free
+                    {% else %}
+                        {{i.Subject}}
+                        {{i.RoomNo}}
+                        {{i.Code}}
+                        {% if i.Batch != 'none' %}
+                        {{i.Batch}}
+                        
+                        {% endif %}
+                        <br>
+                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                    {% endif %}
+                    
+                </td>
+            {% endfor %}
+            </tr>
+        </table>
+        
+        <div id="editTT">
+            
+        </div>
+        <form id="form" action="" method="post">
+
+                
+        </form>
+    </center>
+    <script>
+        var x = document.getElementsByTagName("td");
+            for(var i=0;i<x.length;i++){
+                if(x[i].innerHTML.trim() == 'Free'){
+                    x[i].style.backgroundColor = "limegreen";
+                }
+                else if (x[i].getAttribute("colspan")==2){
+                    x[i].style.backgroundColor = "#5265a5";
+                }
+                else if (x[i].getAttribute("colspan")==1){
+                    x[i].style.backgroundColor = "#32aede";
+                }
+                
+            }
+        // setColor();
+        
+        function setColor() {
+            var x = document.getElementsByTagName("td");
+            for(var i=0;i<x.length;i++){
+                if (x[i].getAttribute("colspan")==2){
+                    x[i].style.backgroundColor = "#5265a5";
+                }
+                else if (x[i].getAttribute("colspan")==1){
+                    x[i].style.backgroundColor = "#32aede";
+                }
+                
+            }
+        }
+        function EditTT() {
+            var activeTT=document.getElementById("activeTT");
+            var editTT=document.getElementById("editTT")
+            var btns=document.getElementsByTagName('button')
+            for (let i = 0; i < btns.length; i++) {
+                btns[0].remove()
+            }
+            editTT.innerHTML='<button id="buildbtn" onclick="nextTask()">Build</button><table>'+activeTT.innerHTML+'</table>'
+            activeTT.innerHTML=''
+            var tds=document.getElementsByTagName('td');
+            count=0
+            for (let i = 0; i < tds.length; i++) {
+                // console.log(tds[i].getAttribute('colspan'))
+                if(tds[i].getAttribute('colspan')=="2"){
+                    tds[i].innerHTML=tds[i].innerHTML+'<button onclick="splitcell(this)" >split</button>'
+                }
+                else{
+                    count+=1
+                    if(count%2==0){
+                        tds[i].innerHTML=tds[i].innerHTML+'<button onclick="mergecell(this)" >merge</button>'
+                    }
+                }
+            }
+            setColor();
+        }
+        function splitcell(x){
+            var y=x.parentNode;
+            var td = document.getElementsByTagName("td");
+            y.setAttribute("colspan","1");
+            // change innerHTML of the y
+            y.innerHTML='Lecture';
+            var newtd = document.createElement("td");
+            newtd.setAttribute("colspan","1");
+            newtd.innerHTML = 'Lecture<button onclick="mergecell(this)">merge</button>';
+            var index = Array.prototype.indexOf.call(td, y);
+            // insert newtd after y
+            y.parentNode.insertBefore(newtd, y.nextSibling);
+            setColor();
+
+        }
+        function mergecell(x) {
+            var y = x.parentNode;
+            var td = document.getElementsByTagName("td");
+            var index = Array.prototype.indexOf.call(td, y);
+            // console.log(index)
+            y.setAttribute("colspan", "2");
+            // remove the td[index-1]
+            console.log(td[index-1])
+            td[index-1].remove()
+            var prev=y.previousSibling
+            console.log(prev)
+            y.parentNode.removeChild(y.previousSibling);
+            y.innerHTML = 'Lab<button onclick="splitcell(this)" >split</button>';
+            setColor();
+        }
+        function emptyinput(inp) {
+            console.log(inp.value)
+            if (inp.value == "") {
+                inp.style.backgroundColor = "red";
+            }
+            else {
+                inp.style.backgroundColor = "#04347a";
+            }
+        }
+        // call emptyinput() on change of input
+
+
+        function nextTask(params) {
+            var table=document.getElementById("editTT");
+            // remove the buttons from the table
+            var buttons= document.getElementsByTagName("button");
+            var len=buttons.length;
+            // console.log(buttons.length);
+            // remove all the buttons
+            for(var i=0;i<len;i++){
+                buttons[0].remove();
+            }
+            // var buttons= document.getElementsByTagName("button");
+            // for(var i=1;i<buttons.length;i++){
+            //     console.log(buttons[i]+i);
+            //     // buttons[i].remove();
+            // }
+
+            document.getElementById("form").innerHTML='<table>'+table.innerHTML+'</table>';
+            table.innerHTML="";
+            var tds= document.getElementsByTagName("td");
+            // console.log(tds.length);
+            for(var i=0;i<tds.length;i++){
+                // check colspan
+
+                if(tds[i].getAttribute("colspan")==2){
+                    if (tds[i].innerHTML.trim()=="Free" || tds[i].innerHTML.trim()=="Lab"){
+                        tds[i].innerHTML='Lab'+'<br><input onchange="emptyinput(this)" type="text" placeholder="Course" name="course"><input onchange="emptyinput(this)" type="text" placeholder="Class" name="class"><input onchange="emptyinput(this)" type="text" placeholder="Room No." name="room"><input onchange="emptyinput(this)" type="text" placeholder="Batch" name="batch">';
+                    }
+                    else{
+                        data=tds[i].innerText.split(" ");
+                        data[3]=data[3].replace("Generate QR","");
+                        tds[i].innerHTML='Lab'+'<br><input onchange="emptyinput(this)" type="text" placeholder="Course" name="course" value="'+data[0]+'" >'+
+                                                '<input onchange="emptyinput(this)" type="text" placeholder="Class" name="class" value="'+data[1]+'">'+
+                                                '<br><input onchange="emptyinput(this)" type="text" placeholder="Room No." name="room" value="'+data[2]+'">'+
+                                                '<input onchange="emptyinput(this)" type="text" placeholder="Batch" name="batch" value="'+data[3]+'">';
+                    }
+                }
+                else{
+                    if (tds[i].innerHTML.trim()=="Free" || tds[i].innerHTML.trim()=="Lecture"){
+                        tds[i].innerHTML='Lecture'+'<br><input onchange="emptyinput(this)" type="text" placeholder="Course" name="course"><input onchange="emptyinput(this)" type="text" placeholder="Class" name="class"><input onchange="emptyinput(this)" type="text" placeholder="Room No." name="room"><input onchange="emptyinput(this)" style="display:none" type="text" placeholder="Batch" name="batch" value="none">';
+                    }
+                    else{
+                        data=tds[i].innerText.split(" ");
+                        data[2]=data[2].replace("Generate QR","");
+                        tds[i].innerHTML='Lecture'+'<br><input onchange="emptyinput(this)" type="text" placeholder="Course" name="course" value="'+data[0]+'">'+
+                                                    '<input onchange="emptyinput(this)" type="text" placeholder="Class" name="class" value="'+data[1]+'">'+
+                                                    '<input onchange="emptyinput(this)" type="text" placeholder="Room No." name="room" value="'+data[2]+'">'+
+                                                    '<input onchange="emptyinput(this)" style="display:none" type="text" placeholder="Batch" name="batch" value="none">';
+                    }
+                }
+                var inputs=tds[i].getElementsByTagName("input");
+                for(var j=0;j<inputs.length;j++){
+                    // if inputs[j] is empty
+                    if(inputs[j].value==""){
+                        inputs[j].style.backgroundColor="red";
+                        inputs[j].style.Color="red";
+                    }
+                }
+            }
+            var form=document.getElementById("form");
+            form.innerHTML='{% csrf_token %}'+'<input type="submit" id="savebtn" value="Save">'+form.innerHTML;
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td,th{
+            position: relative;
+            padding-top:1%;
+            padding-bottom:1%;
+            padding-left:2%;
+            padding-right:2%;
+            border:1px solid;
+            word-wrap:break-word;
+            text-align:center;
+            height: 4rem;
+        }
+        th{
+            width: 10rem;
+            height: 3rem;
+            padding: 1%;
+        }
+        button{
+            position: absolute;
+            right: 0px; 
+            top: 0px;
+        }
+        table{
+            width:95%;
+        }
+    </style>
+</head>
+<body>
+    <center>
+            <button onclick="nextTask()">Next</button>
+            <table id="tab">
+                <tr>
+                    <th style="width:9rem;">Days/Time</th>
+                    <th >9-10</th>
+                    <th >10-11</th>
+                    <th>11-12</th>
+                    <th>12-1</th>
+                    <th>2-3</th>
+                    <th>2-4</th>
+                </tr>
+                        <tr>
+                            <th style="width:9rem;" >Monday</th>
+                            <td colspan="2" >Lab 
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:9rem;">Tuesday</th>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                        </tr>
+                        <tr >
+                            <th style="width:9rem;">Wednesday</th>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                        </tr>
+                        <tr >
+                            <th style="width:9rem;">Thursday</th>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                            
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                        </tr>
+                        <tr >
+                            <th style="width:9rem;">Friday</th>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                            <td colspan="2" >Lab 
+                                
+                                <button onclick="splitcell(this)" >split</button>
+                            </td>
+                        </tr>
+                    
+            </table>
+            <form id="form" action="" method="post">
+
+                
+            </form>
+    </center>
+    <script>
+        setColor();
+        function setColor() {
+            var td=document.getElementsByTagName("td");
+            for(var i=0;i<td.length;i++){
+                colspan=td[i].getAttribute("colspan")
+                if(colspan==2){
+                    td[i].style.backgroundColor="cyan";
+                }
+                else{
+                    td[i].style.backgroundColor="orange";
+                }
+            }
+        }
+        function splitcell(x){
+            var y=x.parentNode;
+            var td = document.getElementsByTagName("td");
+            y.setAttribute("colspan","1");
+            // change innerHTML of the y
+            y.innerHTML='Lecture';
+            var newtd = document.createElement("td");
+            newtd.setAttribute("colspan","1");
+            newtd.innerHTML = 'Lecture<button onclick="mergecell(this)">merge</button>';
+            var index = Array.prototype.indexOf.call(td, y);
+            // insert newtd after y
+            y.parentNode.insertBefore(newtd, y.nextSibling);
+            setColor();
+
+        }
+        function mergecell(x) {
+            var y = x.parentNode;
+            var td = document.getElementsByTagName("td");
+            var index = Array.prototype.indexOf.call(td, y);
+            y.setAttribute("colspan", "2");
+            console.log(y.previousSibling)
+            // remove the td[index-1]
+            y.parentNode.removeChild(y.previousSibling);
+            y.innerHTML = 'Lab<button onclick="splitcell(this)" >split</button>';
+            setColor();
+        }
+
+        function nextTask(params) {
+            var table=document.getElementById("tab");
+            // remove the buttons from the table
+            var buttons= document.getElementsByTagName("button");
+            var len=buttons.length;
+            console.log(buttons.length);
+            // remove all the buttons
+            for(var i=0;i<len;i++){
+                buttons[0].remove();
+            }
+            // var buttons= document.getElementsByTagName("button");
+            // for(var i=1;i<buttons.length;i++){
+            //     console.log(buttons[i]+i);
+            //     // buttons[i].remove();
+            // }
+
+            document.getElementById("form").innerHTML='<table> new'+table.innerHTML+'</table>';
+            table.innerHTML="";
+            var tds= document.getElementsByTagName("td");
+            console.log(tds.length);
+            for(var i=0;i<tds.length;i++){
+                // check colspan
+                if(tds[i].getAttribute("colspan")==2){
+                    tds[i].innerHTML='Lab'+'<br><input style="text-transform: uppercase" type="text" placeholder="Course" name="course"><input style="text-transform: uppercase" type="text" placeholder="Class" name="class"><input style="text-transform: uppercase" type="text" placeholder="Room No." name="room"><input style="text-transform: uppercase" type="text" placeholder="Batch" name="batch">';
+                }
+                else{
+                    tds[i].innerHTML='Lecture'+'<br><input style="text-transform: uppercase" type="text" placeholder="Course" name="course"><input style="text-transform: uppercase" type="text" placeholder="Class" name="class"><input style="text-transform: uppercase" type="text" placeholder="Room No." name="room"><input style="display:none" type="text" placeholder="Batch" name="batch" value="none">';
+                }
+                // tds[i].innerHTML="";
+
+            }
+            var form=document.getElementById("form");
+            form.innerHTML=form.innerHTML+'{% csrf_token %}'+'<input type="submit" value="Submit">';
+        }
+    </script>
+</body>
+</html>
