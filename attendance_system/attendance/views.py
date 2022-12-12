@@ -32,14 +32,14 @@ def GenerateQR(request, courseid):
     # generate qr code
     # genetate an alphanumeric random string
     
-    key1 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-    key2 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+    key1 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=25))
+    key2 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=25))
 
     # time and date
     time = datetime.datetime.now()
     date = time.strftime("%d%m%Y")
     time = time.strftime("%H%M%S")
-
+    details = TimeTable.objects.filter(id=courseid)
     # save the keys in the global dictionary
     keys[courseid+str(date)+str(time)+'Key1'] = key1
     keys[courseid+str(date)+str(time)+'Key2'] = key2
@@ -52,7 +52,7 @@ def GenerateQR(request, courseid):
     
     # Create and save the png file naming "myqr.png"
     url.png('static/images/myqr1.png', scale = 6)
-    return render(request, 'attendance/Faculty/GenerateQR.html',{'myqr': 'myqr.png', 's': s,'courseid':courseid,'key1':key1,'key2':key2,'date':str(date),'time':str(time)})
+    return render(request, 'attendance/Faculty/GenerateQR.html',{'myqr': 'myqr.png', 's': s,'courseid':courseid,'key1':key1,'key2':key2,'date':str(date),'dateforview':str(date[0:2]+'/')+str(date[2:4]+'/')+str(date[4:]),'time':str(time), 'subject':details[0].Subject, 'code':details[0].Code, 'batch':details[0].Batch, 'room':details[0].RoomNo })
 
 def MarkAttendance(request, courseid, date, time, key1, key2):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -75,9 +75,6 @@ def MarkAttendance(request, courseid, date, time, key1, key2):
         if keys[courseid+str(date)+str(time)+'Key1'] == key1 and keys[courseid+str(date)+str(time)+'Key2'] == key2:
             valid=True
             print('Keys found')
-
-
-    
 
     if request.method == 'POST':
         print('POST')

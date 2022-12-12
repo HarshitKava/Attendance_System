@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Attendance System</title>
     <style>
         input[type="text"]{
@@ -51,15 +52,11 @@
             }
             100%{
                 scale: 1.02;
-                border: 0px solid #04347a;
-                z-index: 1;
             }
         }
         @keyframes fader{
             0%{
                 scale: 1.02;
-                border: 0px solid #04347a;
-                z-index: 1;
             }
             100%{
                 scale: 1;
@@ -67,13 +64,13 @@
         }
         th{
             width: 10rem;
-            height: 3rem;
+            height: 6.5rem;
             padding: 1%;
             background-color: #434343;
         }
         #thdays{
             width: 3rem;
-            height: 1rem;
+            height: 6.5rem;
             padding: 0.5%;
 
         }
@@ -90,9 +87,13 @@
             padding: 0.5%;
             border-radius: 10px;
             border: 2px solid black;
-            cursor: pointer;
             position: static;
-            
+            padding: 0.5% 2%;
+        }
+        #editbtn:hover,#buildbtn:hover,#savebtn:hover{
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #fff;
         }
         form table tr td, form table tr th{
             animation:nothing infinite;
@@ -123,6 +124,7 @@
         a:hover{
             color: #000;
             text-decoration: underline;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -171,7 +173,7 @@
                         {{i.Batch}}
                         {% endif %}
                         <br>
-                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                        <a href="{% url 'GenerateQR' i.id %}">QR-Code</a>
                     {% endif %}
                 </td>
             {% endfor %}
@@ -194,7 +196,7 @@
                         {{i.Batch}}
                         {% endif %}
                         <br>
-                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                        <a href="{% url 'GenerateQR' i.id %}">QR-Code</a>
                     {% endif %}
                     
                 </td>
@@ -218,7 +220,7 @@
                         {{i.Batch}}
                         {% endif %}
                         <br>
-                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                        <a href="{% url 'GenerateQR' i.id %}">QR-Code</a>
                     {% endif %}
                     
                 </td>
@@ -242,7 +244,7 @@
                         {{i.Batch}}
                         {% endif %}
                         <br>
-                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                        <a href="{% url 'GenerateQR' i.id %}">QR-Code</a>
                     {% endif %}
                     
                 </td>
@@ -267,7 +269,7 @@
                         
                         {% endif %}
                         <br>
-                        <a href="{% url 'GenerateQR' i.id %}">Generate QR</a>
+                        <a href="{% url 'GenerateQR' i.id %}">QR-Code</a>
                     {% endif %}
                     
                 </td>
@@ -407,7 +409,7 @@
                     }
                     else{
                         data=tds[i].innerText.split(" ");
-                        data[3]=data[3].replace("Generate QR","");
+                        data[3]=data[3].replace("QR-Code","");
                         tds[i].innerHTML='Lab'+'<br><input onchange="emptyinput(this)" type="text" placeholder="Course" name="course" value="'+data[0]+'" >'+
                                                 '<input onchange="emptyinput(this)" type="text" placeholder="Class" name="class" value="'+data[1]+'">'+
                                                 '<br><input onchange="emptyinput(this)" type="text" placeholder="Room No." name="room" value="'+data[2]+'">'+
@@ -420,7 +422,8 @@
                     }
                     else{
                         data=tds[i].innerText.split(" ");
-                        data[2]=data[2].replace("Generate QR","");
+                        data[2]=data[2].replace("QR-Code","");
+                        console.log(data);
                         tds[i].innerHTML='Lecture'+'<br><input onchange="emptyinput(this)" type="text" placeholder="Course" name="course" value="'+data[0]+'">'+
                                                     '<input onchange="emptyinput(this)" type="text" placeholder="Class" name="class" value="'+data[1]+'">'+
                                                     '<input onchange="emptyinput(this)" type="text" placeholder="Room No." name="room" value="'+data[2]+'">'+
